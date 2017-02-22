@@ -55,34 +55,50 @@
                 notChosenColumns.splice.apply(notChosenColumns, [7, 0].concat(choosenColumn)); //put chosen column in middle
                 cardDeck.cards = notChosenColumns.slice(0);
                 step++;
+                $("#cardTable").hide();
+                $(".chooseColumns").hide();
                 if (step == 2) {
-                    $("#cardTable").hide();
                     $("h2").html("Hmmmmm! Utilizando meu poder de processamento superior para adivinhar essa carta...");
                 }
                 if (step == 3) {
-                    $("#cardTable").hide();
                     $("h2").html("Acho que estou visualizando...");
                 }
                 if (step == 4) {
-                    $(".chooseColumns").hide();
                     $("h2").hide();
-                    $("h1").html("SUA CARTA É:")
+                    $("h1").html("...")
                     $("h1").show();
-                    cardDeck.cards = [cardDeck.cards[10]];
-                    $("#de_novo").show();
-                    $("#cardTable").css('height', '5em');
-
                 }
                 setTimeout(function () {
                     if (step == 2) {
+                        $("h2").html("Hmmmm, visualizei um pikachu, mas o baralho é outro..");
+                    }
+                    if (step == 3) {
+                        $("h2").html("É o mago negro de copas? Não, péra...");
+                    }
+                    if (step == 4) {
+                        $("h1").html("Está mais fácil do que pensei")
+                    }
+                }, 3000);
+                setTimeout(function () {
+                    if (step == 2) {
+                        $(".chooseColumns").show();
                         $("h2").html("Está muito difícil visualizar essa carta.. Embaralhei novamente, escola a coluna que ela se encontra agora.");
                     }
                     if (step == 3) {
+                        $(".chooseColumns").show();
                         $("h2").html("Ainda não consigo ver. Vou tentar a última vez. Escolha a coluna que sua carta se encontra.");
+                    }
+                    if (step == 4) {
+                        $(".chooseColumns").hide();
+                        $("h1").html("SUA CARTA É:")
+                        cardDeck.cards = [cardDeck.cards[10]];
+                        $("#de_novo").show();
+                        $("#cardTable").css('height', '5em');
+
                     }
                     $("#cardTable").show();
                     cardDeck.spread(null, true);
-                }, 3000);
+                }, 5000);
 
             });
         });
