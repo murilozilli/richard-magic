@@ -24,7 +24,7 @@
     /*
      * requires jquery (currently)
      */
-    playingCards.prototype.spread = function(dest) {
+    playingCards.prototype.spread = function(dest, slowly) {
         if (!this.conf.el && !dest) {
             return false;
         }
@@ -33,8 +33,20 @@
             i;
         to.html('');
         // clear (just a demo)
-        for (i = 0; i < l; i++) {
-            to.append(this.cards[i].getHTML());
+        if (slowly) {
+            var thisThis = this;
+            var i = 0;
+            var endinterval = setInterval(function() {
+                to.append(thisThis.cards[i].getHTML());
+                i++;
+                if (i >= l) {
+                    clearInterval(endinterval);
+                }
+            }, 130);
+        } else {
+            for (i = 0; i < l; i++) {
+                to.append(this.cards[i].getHTML());
+            }
         }
     };
     /**

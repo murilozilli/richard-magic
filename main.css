@@ -1,6 +1,15 @@
 #cardTable {
+    height:45em;
+}
+#cardTable, .chooseColumns {
     width: 19em;
 }
 .playingCard {
     margin-right:15px;
+}
+.chooseColumns button {
+    width: 6.8em;
+    height:3em;
+    cursor: pointer;
+    margin-right: 15px;
 }

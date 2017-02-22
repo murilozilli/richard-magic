@@ -132,17 +132,17 @@ if (Array.indexOf === undefined) {
      * TODO: put this in a UI extension pack along with all the other demo methods
      */
     playingCards.prototype.spread = function(dest) {
-        if (!this.conf.el && !dest) {
-            return false;
-        }
-        var to = this.conf.el || dest,
-            l = this.cards.length,
-            i;
-        to.html('');
-        // clear (just a demo)
-        for (i = 0; i < l; i++) {
-            to.append(this.cards[i].getHTML());
-        }
+        // if (!this.conf.el && !dest) {
+        //     return false;
+        // }
+        // var to = this.conf.el || dest,
+        //     l = this.cards.length,
+        //     i;
+        // to.html('');
+        // // clear (just a demo)
+        // for (i = 0; i < l; i++) {
+        //     to.append(this.cards[i].getHTML());
+        // }
     };
     /**
      * configuration defaults

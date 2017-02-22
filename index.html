@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+    <meta charset="UTF-8">
+    <title>Mister Megabitico</title>
+    <link href="playing-cards-lib/playingCards.ui.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+</head>
+<body>
+
+    <h1>Escolha uma carta na sua cabeça e grave-a.</h1>
+    <h2>Escolha a coluna que contenha a carta que voce escolheu clicando no botão abaixo referente a mesma</h2>
+    <div class="chooseColumns">
+        <button class="columnButton" value="0">1</button>
+        <button class="columnButton" value="1">2</button>
+        <button class="columnButton" value="2">3</button>
+    </div>
+    <div id="cardTable">
+    </div>
+    <button id="de_novo" style="display:none;" onclick="location.reload();">Jogar de novo</button>
+
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="playing-cards-lib/playingCards.js"></script>
+    <script src="playing-cards-lib/playingCards.ui.js"></script>
+    <script>
+        $(document).ready(function() {
+            var cardDeck = $('#cardTable').playingCards();
+            cardDeck.shuffle();
+            var removedCards = [];
+            for (var i = 0; i < 33; i++) {//draw 21 cards
+                removedCards.push(cardDeck.draw());
+            }
+            cardDeck.spread(null, true);
+
+            var step = 1;
+
+            $(".columnButton").click(function() {
+                var choosedInitialCard = $(this).val();//carta inicial do array
+                var choosenColumn = [];//clone array
+                var notChosenColumns = [];
+
+                for (i = 0; i < 3; i++) {
+                    for (j = i; j < 21; j += 3) {//
+                        if (i == choosedInitialCard) {
+                            choosenColumn.push(cardDeck.cards[j]);
+                        } else {
+                            notChosenColumns.push(cardDeck.cards[j]);
+                        }
+                    }
+                }
+
+                notChosenColumns.splice.apply(notChosenColumns, [7, 0].concat(choosenColumn)); //put chosen column in middle
+                cardDeck.cards = notChosenColumns.slice(0);
+                step++;
+                if (step == 2) {
+                    $("h2").html("Embaralhado! Escolha a coluna que sua carta se encontra agora!");
+                }
+                if (step == 3) {
+                    $("h2").html("Última vez! Escolha a coluna que sua carta se encontra agora!");
+                }
+                if (step == 4) {
+                    $(".chooseColumns").hide();
+                    $("h2").hide();
+                    $("h1").html("SUA CARTA É:")
+                    cardDeck.cards = [cardDeck.cards[10]];
+                    $("#de_novo").show();
+                    $("#cardTable").css('height', '5em');
+
+                }
+                cardDeck.spread(null, true);
+            });
+        });
+    </script>
+</body>
+</html>

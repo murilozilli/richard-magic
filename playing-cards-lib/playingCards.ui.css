@@ -46,7 +46,7 @@ bottom: 0.25em;
 }
 
 .playingCard .red {
-color: #f00;
+	color: #f00;
 }
 
 .playingCard .suit {
@@ -67,7 +67,7 @@ border: 1px solid #000;
 left: 0.6em;
 top: 0.45em;
 width: 2.5em;
-height: 4.em;
+height: 4em;
 }
 /*
 .playingCard .J {
