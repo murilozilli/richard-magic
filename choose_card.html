@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<link>
     <meta charset="UTF-8">
     <title>Escolha uma carta</title>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
+    <link href="playing-cards-lib/playingCards.ui.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
 </head>
 <body>
 
-    <h1>Escolha uma carta</h1>
+    <h1>Escolha uma carta na sua cabeça e grave-a, não clique na carta.</h1>
+    <div id="cardTable">
 
+    </div>
 
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="playing-cards-lib/playingCards.js"></script>
+    <script src="playing-cards-lib/playingCards.ui.js"></script>
+    <script>
+        $(document).ready(function() {
+            var cardDeck = $('#cardTable').playingCards();
+            cardDeck.shuffle();
+            var removedCards = [];
+            for (var i = 0; i < 33; i++) {//draw 21 cards
+                removedCards.push(cardDeck.draw());
+            }
+            cardDeck.spread();
+        });
+    </script>
 </body>
 </html>
