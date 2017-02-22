@@ -7,7 +7,6 @@
     <link href="main.css" rel="stylesheet">
 </head>
 <body>
-
     <h1>Escolha uma carta na sua cabeça e grave-a.</h1>
     <h2>Escolha a coluna que contenha a carta que voce escolheu clicando no botão abaixo referente a mesma</h2>
     <div class="chooseColumns">
@@ -38,6 +37,7 @@
             var step = 1;
 
             $(".columnButton").click(function() {
+                $("h1").hide();
                 var choosedInitialCard = $(this).val();//carta inicial do array
                 var choosenColumn = [];//clone array
                 var notChosenColumns = [];
@@ -56,23 +56,46 @@
                 cardDeck.cards = notChosenColumns.slice(0);
                 step++;
                 if (step == 2) {
-                    $("h2").html("Embaralhado! Escolha a coluna que sua carta se encontra agora!");
+                    $("#cardTable").hide();
+                    $("h2").html("Hmmmmm! Utilizando meu poder de processamento superior para adivinhar essa carta...");
                 }
                 if (step == 3) {
-                    $("h2").html("Última vez! Escolha a coluna que sua carta se encontra agora!");
+                    $("#cardTable").hide();
+                    $("h2").html("Acho que estou visualizando...");
                 }
                 if (step == 4) {
                     $(".chooseColumns").hide();
                     $("h2").hide();
                     $("h1").html("SUA CARTA É:")
+                    $("h1").show();
                     cardDeck.cards = [cardDeck.cards[10]];
                     $("#de_novo").show();
                     $("#cardTable").css('height', '5em');
 
                 }
-                cardDeck.spread(null, true);
+                setTimeout(function () {
+                    if (step == 2) {
+                        $("h2").html("Está muito difícil visualizar essa carta.. Embaralhei novamente, escola a coluna que ela se encontra agora.");
+                    }
+                    if (step == 3) {
+                        $("h2").html("Ainda não consigo ver. Vou tentar a última vez. Escolha a coluna que sua carta se encontra.");
+                    }
+                    $("#cardTable").show();
+                    cardDeck.spread(null, true);
+                }, 3000);
+
             });
         });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Jogo de cartas -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8833920155221666"
+         data-ad-slot="7837919708"
+         data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </body>
 </html>
