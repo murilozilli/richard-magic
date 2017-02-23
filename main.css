@@ -5,11 +5,13 @@
     width: 19em;
 }
 .playingCard {
-    margin-right:15px;
+    margin-right:0.6em;
+    border: 0.05px solid #666;
 }
 .chooseColumns button {
-    width: 6.8em;
-    height:3em;
+    width: 3.8em;
+    height:2em;
     cursor: pointer;
-    margin-right: 15px;
+    margin-right: 0.5em;
+    font-size: 20px;
 }
